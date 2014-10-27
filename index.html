@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>    
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.js"></script>
+    <script src="//cdn.jsdelivr.net/angularjs.nvd3-directives/v0.0.7/angularjs-nvd3-directives.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.1.15-beta/nv.d3.css"/>
+
+    <script src="script.js"></script>
+    
+  </head>
+
+<body ng-app='nvd3TestApp'>
+
+<div ng-controller="ExampleCtrl">
+    <button ng-click="start()">Start Fetching</button>&nbsp;&nbsp;<button ng-click="stop()">Stop Fetching</button>&nbsp;&nbsp;<button ng-click="clear()">Clear Data</button>
+
+    <br/>
+
+<div ng-repeat="graph in graphs">
+    <nvd3-line-chart
+        data="graphData"
+        filtername="'graphDataFilter'"
+        filtervalue="graph.series"
+        id="graph_line_{{$index}}"
+        height="{{graph.height}}"
+        width="800"
+        showxaxis="true"
+        showyaxis="true"
+        forcey="[0]"
+        tooltips="true"
+        interactive="true"
+        margin="{left:50,top:50,bottom:50,right:50}"
+        showlegend="true"
+        legendupdatestate="false"
+        objectequality="true"
+        nodata="Fetching statistics...">
+        <extended-chart><svg></svg></extended-chart>
+    </nvd3-line-chart>
+</div>
+
+</div>
+
+</html>
